@@ -5,16 +5,26 @@
   </div>
   <div class="panel-body">
     <div class="row">
-        <div class="col-xs-2 text-left">Temperature</div>
-        <div class="col-xs-10 text-left">{{weatherInfo.temperature}}</div>
-    </div>
-        <div class="row">
-        <div class="col-xs-2 text-left">Wind</div>
-        <div class="col-xs-10 text-left">{{weatherInfo.wind}}</div>
+        <div class="col-xs-2 col-md-1 text-left">City</div>
+        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.name}}</div>
     </div>
     <div class="row">
+        <div class="col-xs-2 col-md-1 text-left">Temperature</div>
+        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.main.temp}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-md-1 text-left">Description</div>
+        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.weather[0].description}}</div>
+    </div>
+   
+    <div class="row top-buffer" *ngIf="errorMessage">
+        <div class="col-xs-12"><div class="alert alert-danger" role="alert">{{errorMessage}}</div></div> 
+    </div>
+   
+
+    <div class="row top-buffer">
         <div class="col-xs-12">
-            <button type="button" class="btn btn-default btn-md">
+            <button (click)="getWeather()" type="button" class="btn btn-default btn-md">
                 <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </button>
         </div>

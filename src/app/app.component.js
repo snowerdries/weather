@@ -9,16 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var app_service_1 = require('./app.service');
+var weatherInfo_1 = require('./weatherInfo');
 var AppComponent = (function () {
-    function AppComponent() {
-        this.weatherInfo = { temperature: '20' };
+    function AppComponent(weatherService) {
+        this.weatherService = weatherService;
+        this.weatherInfo = new weatherInfo_1.WeatherInfo(0, '', {}, [{}]);
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.getWeather();
+    };
+    AppComponent.prototype.getWeather = function () {
+        var _this = this;
+        this.errorMessage = '';
+        this.weatherService.getWeather()
+            .subscribe(function (weatherInfo) { return _this.weatherInfo = weatherInfo; }, function (error) { return _this.errorMessage = error; });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
+            providers: [app_service_1.WeatherService],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [app_service_1.WeatherService])
     ], AppComponent);
     return AppComponent;
 }());
