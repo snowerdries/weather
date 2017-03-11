@@ -2,6 +2,6 @@ export class WeatherInfo {
   constructor(
     public id: number,
     public name: string,
-    public main: object,
-    public weather: object[]) { }
+    public main: Object,
+    public weather: Object[]) { }
 }
